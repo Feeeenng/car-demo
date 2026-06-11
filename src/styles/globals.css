@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --background: 210 23% 4%;
+  --foreground: 195 23% 94%;
+  --card: 210 18% 8%;
+  --card-foreground: 195 23% 94%;
+  --primary: 23 81% 51%;
+  --primary-foreground: 210 22% 6%;
+  --secondary: 207 16% 16%;
+  --secondary-foreground: 195 23% 94%;
+  --muted: 206 13% 14%;
+  --muted-foreground: 199 10% 66%;
+  --accent: 23 81% 51%;
+  --accent-foreground: 210 22% 6%;
+  --destructive: 0 72% 50%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 205 12% 18%;
+  --input: 205 12% 18%;
+  --ring: 23 81% 51%;
+  --radius: 0.5rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #080a0c;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 74% 10%, rgba(232, 111, 29, 0.12), transparent 26rem),
+    radial-gradient(circle at 12% 0%, rgba(238, 242, 244, 0.06), transparent 22rem),
+    #080a0c;
+  color: hsl(var(--foreground));
+  font-family:
+    "Aptos",
+    "Segoe UI",
+    "Noto Sans SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(232, 111, 29, 0.38);
+  color: #fff;
+}
+
+.industrial-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.04), transparent 26%),
+    linear-gradient(180deg, rgba(10, 12, 14, 0.12), #080a0c 88%);
+}
+
+.industrial-shell::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.industrial-shell::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 0,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 18px
+    ),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.48));
+  opacity: 0.35;
+}
+
+.steel-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.018)),
+    rgba(16, 20, 24, 0.86);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.orange-rule {
+  position: relative;
+}
+
+.orange-rule::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: linear-gradient(90deg, transparent, #e86f1d 42%, transparent);
+  opacity: 0.8;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
