@@ -556,35 +556,35 @@ function App() {
             </div>
 
             <motion.div
-              className="relative min-h-[760px] sm:min-h-[720px] lg:min-h-[640px]"
+              className="product-stage relative min-h-[760px] sm:min-h-[720px] lg:min-h-[640px]"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.85, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="absolute inset-x-3 bottom-16 top-8 skew-x-[-7deg] rounded-lg border border-slate-300/80 bg-gradient-to-br from-white via-[#eef1f2] to-[#dde3e6] shadow-[0_30px_90px_rgba(71,85,95,0.16)] lg:bottom-9" />
-              <div className="absolute inset-x-10 bottom-10 h-24 skew-x-[-12deg] rounded-[50%] bg-gradient-to-r from-transparent via-slate-400/22 to-transparent blur-sm" />
-              <div className="absolute left-6 top-5 h-24 w-px bg-orange-industrial/70" />
-              <div className="absolute right-10 top-12 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              <div className="product-stage-plate absolute inset-x-3 bottom-16 top-8 rounded-lg border border-slate-300/80 bg-gradient-to-br from-white via-[#eef1f2] to-[#dce3e7] lg:bottom-9" />
+              <div className="product-stage-glow absolute inset-x-8 bottom-7 h-32 rounded-[50%] bg-gradient-to-r from-transparent via-slate-500/24 to-orange-industrial/16" />
+              <div className="product-stage-rim absolute left-6 top-5 h-24 w-px bg-orange-industrial/70" />
+              <div className="product-stage-rim absolute right-10 top-12 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 <span className="h-px w-16 bg-orange-industrial" />
                 {t.carousel.label}
               </div>
 
-              <div className="absolute inset-x-0 top-2 z-10 flex h-[45%] items-center justify-center overflow-hidden rounded-lg sm:h-[50%] lg:h-[73%]">
+              <div className="product-stage-image absolute inset-x-0 top-2 z-10 flex h-[45%] items-center justify-center overflow-hidden rounded-lg sm:h-[50%] lg:h-[73%]">
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.img
                     key={activeTruck.id}
                     src={activeTruck.image}
                     alt={activeTruckCopy.name}
-                    className="w-[136%] max-w-none object-contain drop-shadow-[0_38px_42px_rgba(71,85,95,0.26)] sm:w-[126%] lg:w-[120%]"
-                    initial={{ opacity: 0, x: 90, y: -8, scale: 0.94, rotate: -1.5 }}
-                    animate={{ opacity: 1, x: 0, y: 0, scale: 1.02, rotate: 0 }}
-                    exit={{ opacity: 0, x: -80, scale: 1.08, rotate: 1.5 }}
+                    className="w-[136%] max-w-none object-contain drop-shadow-[0_42px_42px_rgba(71,85,95,0.28)] sm:w-[126%] lg:w-[120%]"
+                    initial={{ opacity: 0, x: 92, y: -18, scale: 0.94, rotate: -3.2, rotateY: -8 }}
+                    animate={{ opacity: 1, x: 0, y: 0, scale: 1.025, rotate: -1.2, rotateY: 0 }}
+                    exit={{ opacity: 0, x: -82, y: 12, scale: 1.08, rotate: 2.2, rotateY: 7 }}
                     transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </AnimatePresence>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 z-20 mx-auto max-w-[92%] rounded-lg border border-slate-300/90 bg-white p-4 shadow-[0_26px_70px_rgba(71,85,95,0.16)] sm:bg-white/94 sm:p-6 lg:bottom-0 lg:max-w-[86%]">
+              <div className="product-stage-card absolute bottom-0 left-0 right-0 z-20 mx-auto max-w-[92%] rounded-lg border border-slate-300/90 bg-white p-4 shadow-[0_26px_70px_rgba(71,85,95,0.16)] sm:bg-white/94 sm:p-6 lg:bottom-0 lg:max-w-[86%]">
                 <div className="flex flex-col gap-3 sm:gap-5 md:flex-row md:items-end md:justify-between">
                   <div>
                     <Badge variant="steel" className="mb-3">

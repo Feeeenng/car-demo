@@ -126,6 +126,77 @@ img {
   opacity: 0.8;
 }
 
+.product-stage {
+  perspective: 1100px;
+  transform-style: preserve-3d;
+}
+
+.product-stage-plate {
+  overflow: hidden;
+  z-index: 0;
+  transform:
+    translateZ(-90px)
+    rotateX(5deg)
+    rotateY(-5deg)
+    rotateZ(-2deg);
+  transform-origin: 58% 52%;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 38px 92px rgba(71, 85, 95, 0.16),
+    22px 22px 70px rgba(71, 85, 95, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset -34px -28px 60px rgba(116, 129, 139, 0.16);
+}
+
+.product-stage-plate::before,
+.product-stage-plate::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.product-stage-plate::before {
+  z-index: 0;
+  background:
+    linear-gradient(112deg, rgba(255, 255, 255, 0.8), transparent 26%),
+    linear-gradient(286deg, rgba(87, 101, 111, 0.12), transparent 38%),
+    radial-gradient(circle at 68% 32%, rgba(255, 255, 255, 0.62), transparent 24rem);
+  mix-blend-mode: screen;
+}
+
+.product-stage-plate::after {
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: inherit;
+  box-shadow:
+    inset 18px 0 32px rgba(255, 255, 255, 0.42),
+    inset -28px -18px 44px rgba(82, 96, 106, 0.12);
+}
+
+.product-stage-glow {
+  z-index: 0;
+  transform: rotateX(64deg) rotateZ(-8deg) translate3d(0, 42px, -80px);
+  transform-origin: center;
+  filter: blur(1px);
+}
+
+.product-stage-image {
+  transform: translateZ(58px) rotateX(1deg) rotateY(-2deg);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.product-stage-rim {
+  z-index: 12;
+  transform: translateZ(46px);
+}
+
+.product-stage-card {
+  transform: translateZ(92px);
+  transform-style: preserve-3d;
+}
+
 .text-balance {
   text-wrap: balance;
 }
