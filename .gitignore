@@ -3,7 +3,8 @@ dist/
 *.tsbuildinfo
 vite.config.d.ts
 vite.config.js
-.codex/
+__pycache__/
+*.pyc
 .DS_Store
 .env
 .env.*
