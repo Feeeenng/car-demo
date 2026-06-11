@@ -25,7 +25,7 @@ function TabsList({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
   return (
     <div
       className={cn(
-        "inline-flex h-10 items-center rounded-md border border-white/10 bg-white/[0.035] p-1",
+        "inline-flex h-10 items-center rounded-md border border-slate-300 bg-slate-100 p-1",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ function TabsTrigger({
     <button
       className={cn(
         "inline-flex h-8 items-center justify-center rounded-sm px-3 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-all",
-        active && "bg-white/10 text-foreground shadow-hard",
+        active && "bg-white text-foreground shadow-[0_8px_18px_rgba(71,85,95,0.12)]",
         className,
       )}
       onClick={() => context.onValueChange(value)}

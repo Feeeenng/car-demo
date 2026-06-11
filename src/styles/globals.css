@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --background: 210 23% 4%;
-  --foreground: 195 23% 94%;
-  --card: 210 18% 8%;
-  --card-foreground: 195 23% 94%;
+  color-scheme: light;
+  --background: 42 35% 97%;
+  --foreground: 210 18% 14%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 18% 14%;
   --primary: 23 81% 51%;
-  --primary-foreground: 210 22% 6%;
-  --secondary: 207 16% 16%;
-  --secondary-foreground: 195 23% 94%;
-  --muted: 206 13% 14%;
-  --muted-foreground: 199 10% 66%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 15% 92%;
+  --secondary-foreground: 210 18% 18%;
+  --muted: 210 18% 94%;
+  --muted-foreground: 210 9% 42%;
   --accent: 23 81% 51%;
-  --accent-foreground: 210 22% 6%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 72% 50%;
   --destructive-foreground: 0 0% 98%;
-  --border: 205 12% 18%;
-  --input: 205 12% 18%;
+  --border: 210 13% 82%;
+  --input: 210 13% 82%;
   --ring: 23 81% 51%;
   --radius: 0.5rem;
 }
@@ -30,7 +30,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #080a0c;
+  background: #f7f4ee;
 }
 
 body {
@@ -38,9 +38,9 @@ body {
   min-width: 320px;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 74% 10%, rgba(232, 111, 29, 0.12), transparent 26rem),
-    radial-gradient(circle at 12% 0%, rgba(238, 242, 244, 0.06), transparent 22rem),
-    #080a0c;
+    radial-gradient(circle at 74% 6%, rgba(232, 111, 29, 0.12), transparent 25rem),
+    radial-gradient(circle at 8% 0%, rgba(133, 145, 154, 0.14), transparent 22rem),
+    linear-gradient(180deg, #fbfaf7 0%, #f3f5f6 42%, #ffffff 100%);
   color: hsl(var(--foreground));
   font-family:
     "Aptos",
@@ -60,7 +60,7 @@ img {
 }
 
 ::selection {
-  background: rgba(232, 111, 29, 0.38);
+  background: rgba(232, 111, 29, 0.24);
   color: #fff;
 }
 
@@ -69,8 +69,8 @@ img {
   isolation: isolate;
   min-height: 100vh;
   background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.04), transparent 26%),
-    linear-gradient(180deg, rgba(10, 12, 14, 0.12), #080a0c 88%);
+    linear-gradient(115deg, rgba(255, 255, 255, 0.78), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(232, 235, 237, 0.72) 76%, #ffffff);
 }
 
 .industrial-shell::before {
@@ -79,10 +79,10 @@ img {
   z-index: -2;
   content: "";
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    linear-gradient(rgba(71, 85, 95, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(71, 85, 95, 0.06) 1px, transparent 1px);
   background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, black, transparent 78%);
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
 }
 
 .industrial-shell::after {
@@ -94,21 +94,21 @@ img {
   background:
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.025) 0,
-      rgba(255, 255, 255, 0.025) 1px,
+      rgba(79, 92, 102, 0.045) 0,
+      rgba(79, 92, 102, 0.045) 1px,
       transparent 1px,
       transparent 18px
     ),
-    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.48));
-  opacity: 0.35;
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.72));
+  opacity: 0.42;
 }
 
 .steel-panel {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(83, 97, 108, 0.18);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.018)),
-    rgba(16, 20, 24, 0.86);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(239, 242, 244, 0.82)),
+    rgba(255, 255, 255, 0.9);
+  box-shadow: 0 22px 60px rgba(44, 52, 58, 0.1);
 }
 
 .orange-rule {

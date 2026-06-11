@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ChevronLeft,
@@ -210,9 +210,9 @@ const copy = {
     hero: {
       eyebrow: "COMMERCIAL TRUCK SYSTEM",
       titleTop: "Heavy-duty trucks",
-      titleBottom: "configured for commercial fleets",
+      titleBottom: "for commercial fleets",
       subtitle:
-        "Fleet-ready cargo, refrigerated, construction and urban delivery trucks with body customization, financing and delivery control.",
+        "Fleet-ready cargo, refrigerated, construction and urban delivery trucks configured with body customization, financing and delivery control.",
       primaryCta: "Get fleet pricing",
       secondaryCta: "View top models",
       availability: "Inventory and body-build slots available",
@@ -362,7 +362,7 @@ function CountUp({
   suffix: string;
   className?: string;
 }) {
-  const ref = useMemo(() => ({ current: null as HTMLSpanElement | null }), []);
+  const ref = useRef<HTMLSpanElement | null>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const motionValue = useMotionValue(0);
   const rounded = useTransform(motionValue, (latest) => Math.round(latest));
@@ -408,14 +408,14 @@ function App() {
 
   return (
     <div className="industrial-shell">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#080a0c]/90 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/88 backdrop-blur-sm">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <a href="#" className="flex items-center gap-3" aria-label={t.meta.brand}>
-            <span className="grid h-11 w-11 place-items-center rounded-md border border-orange-industrial/55 bg-orange-industrial text-sm font-black text-[#100c08]">
+            <span className="grid h-11 w-11 place-items-center rounded-md border border-orange-industrial/25 bg-orange-industrial text-sm font-black text-white shadow-[0_12px_28px_rgba(232,111,29,0.22)]">
               {t.meta.mark}
             </span>
             <span className="flex flex-col">
-              <span className="font-display text-lg font-semibold uppercase tracking-[0.16em] text-white">
+              <span className="font-display text-lg font-semibold uppercase tracking-[0.16em] text-slate-950">
                 {t.meta.brand}
               </span>
               <span className="text-[11px] uppercase tracking-[0.26em] text-muted-foreground">
@@ -427,7 +427,7 @@ function App() {
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
             {t.meta.nav.map((item) => (
               <a
-                className="text-sm font-medium text-muted-foreground transition hover:text-white"
+                className="text-sm font-medium text-muted-foreground transition hover:text-slate-950"
                 href={item === t.meta.nav[0] ? "#models" : item === t.meta.nav[1] ? "#delivery" : item === t.meta.nav[2] ? "#reviews" : "#contact"}
                 key={item}
               >
@@ -452,7 +452,7 @@ function App() {
           </div>
 
           <button
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/10 text-white lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-950 shadow-[0_12px_24px_rgba(71,85,95,0.08)] lg:hidden"
             onClick={() => setMobileOpen((open) => !open)}
             type="button"
             aria-label={mobileOpen ? t.meta.close : t.meta.menu}
@@ -462,11 +462,11 @@ function App() {
         </div>
 
         {mobileOpen && (
-          <div className="border-t border-white/10 bg-[#0b0e11] px-4 py-4 lg:hidden">
+          <div className="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
             <div className="mx-auto flex max-w-7xl flex-col gap-4">
               {t.meta.nav.map((item) => (
                 <a
-                  className="rounded-md border border-white/10 px-4 py-3 text-sm text-muted-foreground"
+                  className="rounded-md border border-slate-200 px-4 py-3 text-sm text-muted-foreground"
                   href={item === t.meta.nav[0] ? "#models" : item === t.meta.nav[1] ? "#delivery" : item === t.meta.nav[2] ? "#reviews" : "#contact"}
                   key={item}
                   onClick={() => setMobileOpen(false)}
@@ -490,8 +490,10 @@ function App() {
       </header>
 
       <main>
-        <section className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.45fr]">
+        <section className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
+          <div className="pointer-events-none absolute left-0 top-28 h-px w-1/2 bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-44 h-px w-1/3 bg-gradient-to-r from-transparent via-orange-industrial/35 to-transparent" />
+          <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.82fr_1.5fr]">
             <div className="relative z-10">
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
@@ -501,7 +503,12 @@ function App() {
                 <Badge className="mb-6">{t.hero.eyebrow}</Badge>
               </motion.div>
 
-              <h1 className="text-balance font-display text-5xl font-black uppercase leading-[0.96] text-white sm:text-6xl lg:text-7xl">
+              <h1
+                className={cn(
+                  "text-balance font-display text-[3.35rem] font-black uppercase leading-[0.94] text-slate-950 sm:text-6xl",
+                  locale === "en" ? "lg:text-[4.7rem]" : "lg:text-7xl",
+                )}
+              >
                 <motion.span
                   className="block"
                   initial={{ opacity: 0, y: 34 }}
@@ -511,7 +518,7 @@ function App() {
                   {t.hero.titleTop}
                 </motion.span>
                 <motion.span
-                  className="mt-2 block text-steel-300"
+                  className="mt-2 block text-slate-500"
                   initial={{ opacity: 0, y: 34 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.2 }}
@@ -521,7 +528,7 @@ function App() {
               </h1>
 
               <motion.p
-                className="mt-7 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg"
+                className="mt-6 max-w-xl text-base leading-8 text-muted-foreground sm:mt-7 sm:text-lg"
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.34 }}
@@ -539,7 +546,7 @@ function App() {
               </motion.div>
 
               <motion.div
-                className="mt-10 hidden max-w-lg grid-cols-3 border-y border-white/10 lg:grid"
+                className="mt-10 hidden max-w-lg grid-cols-3 border-y border-slate-200 lg:grid"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.58 }}
@@ -549,25 +556,26 @@ function App() {
             </div>
 
             <motion.div
-              className="relative min-h-[820px] sm:min-h-[760px] lg:min-h-[620px]"
+              className="relative min-h-[760px] sm:min-h-[720px] lg:min-h-[640px]"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.85, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="absolute inset-x-3 bottom-9 top-12 skew-x-[-8deg] rounded-lg border border-white/10 bg-[#121820]/70 shadow-industrial" />
-              <div className="absolute left-6 top-5 h-24 w-px bg-orange-industrial/60" />
+              <div className="absolute inset-x-3 bottom-16 top-8 skew-x-[-7deg] rounded-lg border border-slate-300/80 bg-gradient-to-br from-white via-[#eef1f2] to-[#dde3e6] shadow-[0_30px_90px_rgba(71,85,95,0.16)] lg:bottom-9" />
+              <div className="absolute inset-x-10 bottom-10 h-24 skew-x-[-12deg] rounded-[50%] bg-gradient-to-r from-transparent via-slate-400/22 to-transparent blur-sm" />
+              <div className="absolute left-6 top-5 h-24 w-px bg-orange-industrial/70" />
               <div className="absolute right-10 top-12 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 <span className="h-px w-16 bg-orange-industrial" />
                 {t.carousel.label}
               </div>
 
-              <div className="absolute inset-x-0 top-4 z-10 flex h-[38%] items-center justify-center overflow-hidden rounded-lg sm:h-[48%] lg:h-[72%]">
+              <div className="absolute inset-x-0 top-2 z-10 flex h-[45%] items-center justify-center overflow-hidden rounded-lg sm:h-[50%] lg:h-[73%]">
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.img
                     key={activeTruck.id}
                     src={activeTruck.image}
                     alt={activeTruckCopy.name}
-                    className="w-[132%] max-w-none object-contain drop-shadow-[0_40px_55px_rgba(0,0,0,0.55)] sm:w-[124%] lg:w-[118%]"
+                    className="w-[136%] max-w-none object-contain drop-shadow-[0_38px_42px_rgba(71,85,95,0.26)] sm:w-[126%] lg:w-[120%]"
                     initial={{ opacity: 0, x: 90, y: -8, scale: 0.94, rotate: -1.5 }}
                     animate={{ opacity: 1, x: 0, y: 0, scale: 1.02, rotate: 0 }}
                     exit={{ opacity: 0, x: -80, scale: 1.08, rotate: 1.5 }}
@@ -576,13 +584,13 @@ function App() {
                 </AnimatePresence>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 z-20 mx-auto max-w-[92%] rounded-lg border border-white/10 bg-[#0b0f13]/95 p-5 shadow-industrial sm:p-6 lg:bottom-0">
-                <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+              <div className="absolute bottom-0 left-0 right-0 z-20 mx-auto max-w-[92%] rounded-lg border border-slate-300/90 bg-white p-4 shadow-[0_26px_70px_rgba(71,85,95,0.16)] sm:bg-white/94 sm:p-6 lg:bottom-0 lg:max-w-[86%]">
+                <div className="flex flex-col gap-3 sm:gap-5 md:flex-row md:items-end md:justify-between">
                   <div>
                     <Badge variant="steel" className="mb-3">
                       {activeTruckCopy.type}
                     </Badge>
-                    <h2 className="font-display text-2xl font-black uppercase text-white sm:text-3xl">
+                    <h2 className="font-display text-[1.55rem] font-black uppercase leading-tight text-slate-950 sm:text-3xl lg:text-[1.65rem]">
                       {activeTruckCopy.name}
                     </h2>
                     <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
@@ -593,24 +601,24 @@ function App() {
                     <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
                       {t.hero.availability}
                     </p>
-                    <p className="mt-1 font-display text-2xl font-black text-[#ffad73]">
+                    <p className="mt-1 font-display text-2xl font-black text-orange-industrial">
                       {activeTruckCopy.price}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                <div className="mt-4 grid gap-2 sm:mt-5 sm:grid-cols-3 sm:gap-3">
                   {activeTruckCopy.specs.map(([label, value]) => (
-                    <div className="rounded-md border border-white/10 bg-white/[0.035] p-3" key={label}>
+                    <div className="rounded-md border border-slate-200 bg-slate-50 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]" key={label}>
                       <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
                         {label}
                       </p>
-                      <p className="mt-1 font-display text-lg font-bold text-white">{value}</p>
+                      <p className="mt-1 font-display text-lg font-bold text-slate-950">{value}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-5 flex items-center justify-between gap-3">
+                <div className="mt-4 flex items-center justify-between gap-3 sm:mt-5">
                   <Button variant="outline" size="sm" asChild>
                     <a href="#contact">{t.carousel.viewDetails}</a>
                   </Button>
@@ -628,7 +636,7 @@ function App() {
                         <button
                           aria-label={`${t.carousel.label} ${index + 1}`}
                           className={cn(
-                            "h-2.5 w-8 rounded-sm bg-white/20 transition-all",
+                            "h-2.5 w-8 rounded-sm bg-slate-300 transition-all",
                             active === index && "bg-orange-industrial",
                           )}
                           key={model.id}
@@ -653,7 +661,7 @@ function App() {
 
           <div className="mx-auto mt-8 max-w-7xl lg:hidden">
             <HeroActions primary={t.hero.primaryCta} secondary={t.hero.secondaryCta} />
-            <div className="mt-8 grid grid-cols-3 border-y border-white/10">
+            <div className="mt-8 grid grid-cols-3 border-y border-slate-200">
               <StatsGrid stats={t.stats} />
             </div>
           </div>
@@ -682,10 +690,10 @@ function App() {
                 transition={{ duration: 0.55, delay: index * 0.1 }}
                 key={card.title}
               >
-                <Card className="group h-full overflow-hidden bg-[#10151a]/86 transition duration-300 hover:-translate-y-1 hover:border-orange-industrial/45">
+                <Card className="group h-full overflow-hidden bg-white/90 transition duration-300 hover:-translate-y-1 hover:border-orange-industrial/45">
                   <div className="h-1 bg-gradient-to-r from-orange-industrial via-[#f2a15c] to-transparent" />
                   <CardHeader>
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md border border-white/10 bg-white/[0.045] text-[#ffad73]">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md border border-orange-industrial/25 bg-orange-industrial/10 text-orange-industrial">
                       {index === 0 ? (
                         <Gauge className="h-5 w-5" />
                       ) : index === 1 ? (
@@ -718,7 +726,7 @@ function App() {
           </div>
         </RevealSection>
 
-        <RevealSection id="delivery" className="border-y border-white/10 bg-[#0b0f13]/80 px-4 py-20 sm:px-6 lg:px-8">
+        <RevealSection id="delivery" className="border-y border-slate-200 bg-[#f1f3f4]/80 px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
             <SectionHeading
               align="left"
@@ -747,10 +755,10 @@ function App() {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-display text-lg font-bold uppercase text-white">{item.title}</h3>
+                    <h3 className="font-display text-lg font-bold uppercase text-slate-950">{item.title}</h3>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">{item.body}</p>
                   </div>
-                  <span className="hidden font-display text-3xl font-black text-white/10 sm:block">
+                  <span className="hidden font-display text-3xl font-black text-slate-300/80 sm:block">
                     0{index + 1}
                   </span>
                 </motion.div>
@@ -771,10 +779,10 @@ function App() {
                 transition={{ duration: 0.55, delay: index * 0.1 }}
                 key={review.company}
               >
-                <figcaption className="font-display text-sm font-bold uppercase tracking-[0.16em] text-[#ffad73]">
+                <figcaption className="font-display text-sm font-bold uppercase tracking-[0.16em] text-orange-industrial">
                   {review.company}
                 </figcaption>
-                <blockquote className="mt-5 text-lg leading-8 text-white">"{review.quote}"</blockquote>
+                <blockquote className="mt-5 text-lg leading-8 text-slate-950">"{review.quote}"</blockquote>
                 <Separator className="my-5" />
                 <p className="text-sm text-muted-foreground">{review.name}</p>
               </motion.figure>
@@ -783,22 +791,22 @@ function App() {
         </RevealSection>
 
         <RevealSection id="contact" className="px-4 pb-12 pt-8 sm:px-6 lg:px-8">
-          <div className="orange-rule mx-auto max-w-7xl rounded-lg border border-white/10 bg-[#11171d] p-6 shadow-industrial sm:p-8 lg:p-10">
+          <div className="orange-rule mx-auto max-w-7xl rounded-lg border border-slate-200 bg-white p-6 shadow-[0_26px_70px_rgba(71,85,95,0.12)] sm:p-8 lg:p-10">
             <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div>
                 <Badge>{t.cta.phoneLabel}</Badge>
-                <h2 className="mt-5 max-w-3xl font-display text-3xl font-black uppercase leading-tight text-white sm:text-4xl">
+                <h2 className="mt-5 max-w-3xl font-display text-3xl font-black uppercase leading-tight text-slate-950 sm:text-4xl">
                   {t.cta.title}
                 </h2>
                 <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
                   {t.cta.body}
                 </p>
               </div>
-              <div className="rounded-lg border border-white/10 bg-[#080a0c]/70 p-5">
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
                 <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
                   {t.cta.phoneLabel}
                 </p>
-                <p className="mt-2 font-display text-4xl font-black text-white">{t.cta.phone}</p>
+                <p className="mt-2 font-display text-4xl font-black text-slate-950">{t.cta.phone}</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                   <Button asChild>
                     <a href={`tel:${t.cta.phone.replace(/-/g, "")}`}>
@@ -819,7 +827,7 @@ function App() {
         </RevealSection>
       </main>
 
-      <footer className="border-t border-white/10 px-4 py-8 sm:px-6 lg:px-8">
+      <footer className="border-t border-slate-200 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>{t.footer.line}</p>
           <div className="flex items-center gap-2">
@@ -885,7 +893,7 @@ function StatsGrid({
         <div
           className={cn(
             "py-5",
-            index > 0 && "border-l border-white/10 pl-4 sm:pl-5",
+            index > 0 && "border-l border-slate-200 pl-4 sm:pl-5",
             index === 0 && "pr-3 sm:pr-4",
           )}
           key={stat.label}
@@ -893,7 +901,7 @@ function StatsGrid({
           <CountUp
             value={stat.value}
             suffix={stat.suffix}
-            className="font-display text-2xl font-black text-white sm:text-3xl"
+            className="font-display text-2xl font-black text-slate-950 sm:text-3xl"
           />
           <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
             {stat.label}
@@ -918,7 +926,7 @@ function SectionHeading({
   return (
     <div className={cn("mx-auto max-w-3xl", align === "center" ? "text-center" : "text-left")}>
       <Badge>{eyebrow}</Badge>
-      <h2 className="mt-5 font-display text-3xl font-black uppercase leading-tight text-white sm:text-4xl">
+      <h2 className="mt-5 font-display text-3xl font-black uppercase leading-tight text-slate-950 sm:text-4xl">
         {title}
       </h2>
       {subtitle && <p className="mt-4 text-base leading-7 text-muted-foreground">{subtitle}</p>}
