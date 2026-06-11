@@ -27,7 +27,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
-type Locale = "zh" | "en";
+type Locale = "zh" | "en" | "ru" | "fr" | "es";
 
 type TruckModel = {
   id: string;
@@ -53,11 +53,28 @@ const truckModels: TruckModel[] = [
   },
 ];
 
+const languageOptions: { value: Locale; label: string }[] = [
+  { value: "zh", label: "中文" },
+  { value: "en", label: "EN" },
+  { value: "ru", label: "RU" },
+  { value: "fr", label: "FR" },
+  { value: "es", label: "ES" },
+];
+
+const localeLang: Record<Locale, string> = {
+  zh: "zh-CN",
+  en: "en",
+  ru: "ru",
+  fr: "fr",
+  es: "es",
+};
+
 const copy = {
   zh: {
     meta: {
       brand: "曜衡重工",
       mark: "YH",
+      showroom: "商用车展厅",
       nav: ["车型", "交付能力", "客户评价", "咨询报价"],
       menu: "菜单",
       close: "关闭",
@@ -202,6 +219,7 @@ const copy = {
     meta: {
       brand: "YaoHeng Heavy",
       mark: "YH",
+      showroom: "Heavy showroom",
       nav: ["Models", "Delivery", "References", "Quote"],
       menu: "Menu",
       close: "Close",
@@ -342,6 +360,441 @@ const copy = {
       rights: "© 2026 YaoHeng Heavy showroom",
     },
   },
+  ru: {
+    meta: {
+      brand: "YaoHeng Heavy",
+      mark: "YH",
+      showroom: "Коммерческий шоурум",
+      nav: ["Модели", "Поставка", "Отзывы", "Заявка"],
+      menu: "Меню",
+      close: "Закрыть",
+      language: "Язык",
+    },
+    hero: {
+      eyebrow: "КОММЕРЧЕСКИЕ ГРУЗОВИКИ",
+      titleTop: "Грузовые машины",
+      titleBottom: "для коммерческих парков",
+      subtitle:
+        "Готовые решения для городских, холодильных, строительных и магистральных перевозок с подбором кузова, финансированием и контролем поставки.",
+      primaryCta: "Получить расчет",
+      secondaryCta: "Смотреть модели",
+      availability: "Склад и слоты на надстройки доступны",
+    },
+    stats: [
+      { value: 18, suffix: " т", label: "Полная масса" },
+      { value: 320, suffix: " км", label: "Запас хода EV" },
+      { value: 21, suffix: " день", label: "Быстрая поставка" },
+    ],
+    carousel: {
+      label: "Ключевые модели",
+      previous: "Предыдущая модель",
+      next: "Следующая модель",
+      viewDetails: "Смотреть комплектацию",
+      models: {
+        ironhaul: {
+          name: "IronHaul 720 фургон",
+          type: "Магистраль / промышленные грузы",
+          price: "от $50 800",
+          summary: "Усиленная рама, длинный кузов и тяговая силовая линия для частых тяжелых рейсов.",
+          specs: [
+            ["Полная масса", "18 т"],
+            ["Длина кузова", "7.2 м"],
+            ["Силовая линия", "Дизель / EV"],
+          ],
+        },
+        coldchain: {
+          name: "ColdChain 520 рефрижератор",
+          type: "Продукты / фармлогистика",
+          price: "от $41 200",
+          summary: "Изотермический кузов и независимая холодильная установка для городских холодовых маршрутов.",
+          specs: [
+            ["Температура", "-18°C до 8°C"],
+            ["Длина кузова", "5.2 м"],
+            ["Срок", "21 день"],
+          ],
+        },
+        urbancarrier: {
+          name: "UrbanCarrier 360 развозной",
+          type: "Городская доставка / быстрый оборот",
+          price: "от $24 300",
+          summary: "Компактная база, низкая погрузка и полезный объем для плотных городских маршрутов.",
+          specs: [
+            ["Грузоподъемность", "3.8 т"],
+            ["Длина кузова", "3.6 м"],
+            ["Расход", "от 18 кВтч/100км"],
+          ],
+        },
+      },
+    },
+    paramTags: [
+      "Нагрузка 3.8-18 т",
+      "Кузов 3.6-7.2 м",
+      "Дизель / EV / рефрижератор",
+      "Поставка и регистрация",
+      "3 года гарантии на узлы",
+    ],
+    section: {
+      modelsEyebrow: "ГОТОВЫЕ КОНФИГУРАЦИИ",
+      modelsTitle: "Популярные модели под рабочие сценарии",
+      modelsSubtitle: "Комплектации подбираются по маршруту, частоте загрузки и сроку поставки, а не по пустому списку параметров.",
+      advantagesEyebrow: "СИСТЕМА ПОСТАВКИ",
+      advantagesTitle: "Закупка, надстройка и поставка ведутся одной командой",
+      reviewsEyebrow: "ОПЫТ АВТОПАРКОВ",
+      reviewsTitle: "Отзывы коммерческих покупателей",
+    },
+    cards: [
+      {
+        title: "Тяжелый фургон",
+        body: "Для оборудования, стройматериалов и промышленных запчастей с упором на раму и устойчивость на маршруте.",
+        specs: ["18 т полная масса", "7.2 м кузов", "Тяговый привод"],
+      },
+      {
+        title: "Рефрижератор для парка",
+        body: "Для свежих продуктов, фармлогистики и готовой еды с выбором кузова и холодильной установки.",
+        specs: ["-18°C контроль", "Изотермия", "Автономный холод"],
+      },
+      {
+        title: "Городская доставка",
+        body: "Для ритейла, складской доставки и конечных маршрутов, где важны скорость погрузки и расход.",
+        specs: ["Низкая погрузка", "Малый радиус", "EV опция"],
+      },
+    ],
+    cardCta: "Запросить подбор",
+    advantages: [
+      {
+        title: "Консультация по комплектации",
+        body: "Список моделей по нагрузке, маршруту, грузу и городу регистрации.",
+      },
+      {
+        title: "Координация надстройки",
+        body: "Кузов, гидроборт, холод, боковые двери и крепления планируются вместе.",
+      },
+      {
+        title: "Контроль поставки",
+        body: "Склад, финансирование, страхование, регистрация и передача видны по этапам.",
+      },
+      {
+        title: "Сервисная поддержка",
+        body: "Гарантия на ключевые узлы и план обслуживания передаются вместе с машиной.",
+      },
+    ],
+    reviews: [
+      {
+        company: "Холодильный автопарк Восточного Китая",
+        quote:
+          "Главным была предсказуемая поставка. Холод, кузов и финансирование стояли в одном графике, поэтому решение приняли быстрее.",
+        name: "Директор по операциям, Чжоу",
+      },
+      {
+        company: "Перевозчик промышленных грузов",
+        quote:
+          "Шасси и кузов разобрали по данным нагрузки. Их вариант останется в сравнении при следующем расширении парка.",
+        name: "Менеджер автопарка, Линь",
+      },
+    ],
+    cta: {
+      title: "Опишите маршрут, и за 48 часов мы подготовим модель и расчет",
+      body: "Укажите нагрузку, маршрут, размеры груза и город поставки. Консультант вернет варианты машины, кузова, силовой линии и финансирования.",
+      phoneLabel: "Линия консультации",
+      phone: "400-618-7200",
+      primary: "Записаться к консультанту",
+      secondary: "Скачать чек-лист",
+    },
+    footer: {
+      line: "Платформа продаж и поставки коммерческих грузовиков",
+      rights: "© 2026 шоурум YaoHeng Heavy",
+    },
+  },
+  fr: {
+    meta: {
+      brand: "YaoHeng Heavy",
+      mark: "YH",
+      showroom: "Showroom utilitaire",
+      nav: ["Modèles", "Livraison", "Références", "Devis"],
+      menu: "Menu",
+      close: "Fermer",
+      language: "Langue",
+    },
+    hero: {
+      eyebrow: "CAMIONS PROFESSIONNELS",
+      titleTop: "Camions industriels",
+      titleBottom: "pour flottes professionnelles",
+      subtitle:
+        "Des camions cargo, frigorifiques, chantier et livraison urbaine avec carrosserie adaptée, financement et suivi de livraison.",
+      primaryCta: "Obtenir un devis",
+      secondaryCta: "Voir les modèles",
+      availability: "Stock et créneaux de carrosserie disponibles",
+    },
+    stats: [
+      { value: 18, suffix: " t", label: "PTAC maximal" },
+      { value: 320, suffix: " km", label: "Autonomie EV" },
+      { value: 21, suffix: " jours", label: "Livraison rapide" },
+    ],
+    carousel: {
+      label: "Modèles phares",
+      previous: "Modèle précédent",
+      next: "Modèle suivant",
+      viewDetails: "Voir la configuration",
+      models: {
+        ironhaul: {
+          name: "IronHaul 720 fourgon",
+          type: "Longue distance / fret industriel",
+          price: "Dès 50 800 $",
+          summary: "Châssis renforcé, caisse longue et motorisation à fort couple pour charges lourdes fréquentes.",
+          specs: [
+            ["PTAC", "18 t"],
+            ["Longueur caisse", "7.2 m"],
+            ["Motorisation", "Diesel / EV"],
+          ],
+        },
+        coldchain: {
+          name: "ColdChain 520 frigorifique",
+          type: "Frais / chaîne du froid médicale",
+          price: "Dès 41 200 $",
+          summary: "Caisse isolée intégrée et groupe froid indépendant pour tournées urbaines sous température.",
+          specs: [
+            ["Température", "-18°C à 8°C"],
+            ["Longueur caisse", "5.2 m"],
+            ["Délai", "21 jours"],
+          ],
+        },
+        urbancarrier: {
+          name: "UrbanCarrier 360 livraison",
+          type: "Distribution urbaine / rotation rapide",
+          price: "Dès 24 300 $",
+          summary: "Empattement compact, seuil bas et volume utile optimisé pour les lignes urbaines denses.",
+          specs: [
+            ["Charge utile", "3.8 t"],
+            ["Longueur caisse", "3.6 m"],
+            ["Énergie", "Dès 18 kWh/100km"],
+          ],
+        },
+      },
+    },
+    paramTags: [
+      "Charge 3.8-18 t",
+      "Caisse 3.6-7.2 m",
+      "Diesel / EV / frigorifique",
+      "Livraison et immatriculation",
+      "Garantie organes 3 ans",
+    ],
+    section: {
+      modelsEyebrow: "CONFIGURATIONS CLÉS",
+      modelsTitle: "Modèles vendus selon vos usages",
+      modelsSubtitle: "Les configurations sont choisies par route, fréquence de charge et délai de livraison, pas par une fiche technique isolée.",
+      advantagesEyebrow: "SYSTÈME DE LIVRAISON",
+      advantagesTitle: "Achat, carrosserie et livraison pilotés ensemble",
+      reviewsEyebrow: "RÉFÉRENCES FLOTTES",
+      reviewsTitle: "Avis d’acheteurs professionnels",
+    },
+    cards: [
+      {
+        title: "Fourgon lourd",
+        body: "Pour équipements, matériaux et pièces industrielles avec priorité au châssis et à la stabilité en ligne.",
+        specs: ["18 t PTAC", "Caisse 7.2 m", "Fort couple"],
+      },
+      {
+        title: "Camion frigorifique",
+        body: "Pour produits frais, santé et restauration collective avec choix de caisse et groupe froid.",
+        specs: ["Contrôle -18°C", "Caisse isolée", "Froid indépendant"],
+      },
+      {
+        title: "Livraison urbaine",
+        body: "Pour retail, entrepôts et derniers kilomètres, où vitesse de chargement et énergie comptent.",
+        specs: ["Seuil bas", "Braquage compact", "EV en option"],
+      },
+    ],
+    cardCta: "Demander une config",
+    advantages: [
+      {
+        title: "Conseil configuration",
+        body: "Liste de modèles selon charge, route, marchandise et ville d’immatriculation.",
+      },
+      {
+        title: "Coordination carrosserie",
+        body: "Caisse, hayon, froid, portes latérales et arrimage sont planifiés ensemble.",
+      },
+      {
+        title: "Suivi de livraison",
+        body: "Stock, financement, assurance, immatriculation et remise sont visibles par jalon.",
+      },
+      {
+        title: "Réponse service",
+        body: "Garantie des organes clés et plan d’entretien flotte livrés avec le véhicule.",
+      },
+    ],
+    reviews: [
+      {
+        company: "Flotte froid Est de la Chine",
+        quote:
+          "La valeur était la certitude de livraison. Froid, carrosserie et financement étaient dans un seul planning, ce qui a accéléré la décision.",
+        name: "Directeur des opérations, Zhou",
+      },
+      {
+        company: "Transporteur de fret industriel",
+        quote:
+          "Les options châssis et caisse ont été expliquées avec les données de charge. Leur plan restera dans notre prochain comparatif flotte.",
+        name: "Responsable flotte, Lin",
+      },
+    ],
+    cta: {
+      title: "Envoyez votre scénario, recevez un plan camion sous 48 heures",
+      body: "Partagez charge, route, dimensions et ville de livraison. Notre conseiller proposera véhicule, caisse, motorisation et financement.",
+      phoneLabel: "Ligne conseil",
+      phone: "400-618-7200",
+      primary: "Réserver un conseiller",
+      secondary: "Télécharger la liste",
+    },
+    footer: {
+      line: "Plateforme de vente et livraison de camions professionnels",
+      rights: "© 2026 showroom YaoHeng Heavy",
+    },
+  },
+  es: {
+    meta: {
+      brand: "YaoHeng Heavy",
+      mark: "YH",
+      showroom: "Showroom comercial",
+      nav: ["Modelos", "Entrega", "Referencias", "Cotizar"],
+      menu: "Menú",
+      close: "Cerrar",
+      language: "Idioma",
+    },
+    hero: {
+      eyebrow: "CAMIONES COMERCIALES",
+      titleTop: "Camiones pesados",
+      titleBottom: "para flotas comerciales",
+      subtitle:
+        "Camiones de carga, refrigerados, obra y reparto urbano con carrocería a medida, financiación y control de entrega.",
+      primaryCta: "Solicitar cotización",
+      secondaryCta: "Ver modelos",
+      availability: "Stock y cupos de carrocería disponibles",
+    },
+    stats: [
+      { value: 18, suffix: " t", label: "Peso bruto" },
+      { value: 320, suffix: " km", label: "Autonomía EV" },
+      { value: 21, suffix: " días", label: "Entrega rápida" },
+    ],
+    carousel: {
+      label: "Modelos destacados",
+      previous: "Modelo anterior",
+      next: "Modelo siguiente",
+      viewDetails: "Ver configuración",
+      models: {
+        ironhaul: {
+          name: "IronHaul 720 furgón",
+          type: "Ruta larga / carga industrial",
+          price: "Desde $50,800",
+          summary: "Bastidor reforzado, caja larga y tren motriz de alto par para cargas pesadas frecuentes.",
+          specs: [
+            ["Peso bruto", "18 t"],
+            ["Largo de caja", "7.2 m"],
+            ["Tren motriz", "Diésel / EV"],
+          ],
+        },
+        coldchain: {
+          name: "ColdChain 520 refrigerado",
+          type: "Frescos / cadena fría médica",
+          price: "Desde $41,200",
+          summary: "Caja aislada integrada y equipo de frío independiente para rutas urbanas refrigeradas.",
+          specs: [
+            ["Temperatura", "-18°C a 8°C"],
+            ["Largo de caja", "5.2 m"],
+            ["Plazo", "21 días"],
+          ],
+        },
+        urbancarrier: {
+          name: "UrbanCarrier 360 reparto",
+          type: "Distribución urbana / alta rotación",
+          price: "Desde $24,300",
+          summary: "Distancia entre ejes compacta, piso bajo y volumen útil para rutas urbanas densas.",
+          specs: [
+            ["Carga útil", "3.8 t"],
+            ["Largo de caja", "3.6 m"],
+            ["Consumo", "Desde 18 kWh/100km"],
+          ],
+        },
+      },
+    },
+    paramTags: [
+      "Carga 3.8-18 t",
+      "Caja 3.6-7.2 m",
+      "Diésel / EV / refrigerado",
+      "Entrega y registro",
+      "Garantía central 3 años",
+    ],
+    section: {
+      modelsEyebrow: "CONFIGURACIONES CLAVE",
+      modelsTitle: "Modelos vendidos por escenario de uso",
+      modelsSubtitle: "Las configuraciones se seleccionan por ruta, frecuencia de carga y fecha de entrega, no por una ficha aislada.",
+      advantagesEyebrow: "SISTEMA DE ENTREGA",
+      advantagesTitle: "Compra, carrocería y entrega gestionadas juntas",
+      reviewsEyebrow: "REFERENCIAS DE FLOTA",
+      reviewsTitle: "Opiniones de compradores comerciales",
+    },
+    cards: [
+      {
+        title: "Transporte pesado",
+        body: "Para equipos, materiales de obra y repuestos industriales, con prioridad en bastidor y estabilidad de ruta.",
+        specs: ["18 t peso bruto", "Caja 7.2 m", "Alto par"],
+      },
+      {
+        title: "Camión refrigerado",
+        body: "Para frescos, salud y comida preparada, con selección de caja y sistema de refrigeración.",
+        specs: ["Control -18°C", "Caja aislada", "Frío independiente"],
+      },
+      {
+        title: "Reparto urbano",
+        body: "Para retail, almacenes y última milla, donde carga rápida y consumo definen el costo.",
+        specs: ["Piso bajo", "Giro compacto", "EV opcional"],
+      },
+    ],
+    cardCta: "Pedir configuración",
+    advantages: [
+      {
+        title: "Asesoría de configuración",
+        body: "Lista de modelos según carga, ruta, tipo de mercancía y ciudad de registro.",
+      },
+      {
+        title: "Coordinación de carrocería",
+        body: "Caja, plataforma, frío, puertas laterales y anclajes se programan en conjunto.",
+      },
+      {
+        title: "Control de entrega",
+        body: "Stock, financiación, seguro, registro y entrega son visibles por hitos.",
+      },
+      {
+        title: "Respuesta posventa",
+        body: "Garantía de componentes centrales y plan de mantenimiento se entregan con el vehículo.",
+      },
+    ],
+    reviews: [
+      {
+        company: "Flota refrigerada del este de China",
+        quote:
+          "Lo clave fue la certeza de entrega. Frío, carrocería y financiación estaban en una sola línea de tiempo, y decidimos más rápido.",
+        name: "Director de operaciones, Zhou",
+      },
+      {
+        company: "Transportista de carga industrial",
+        quote:
+          "Las opciones de chasis y caja se explicaron con datos de carga. Mantendremos su plan en la próxima revisión de flota.",
+        name: "Gerente de flota, Lin",
+      },
+    ],
+    cta: {
+      title: "Envíe su escenario y reciba un plan de modelo en 48 horas",
+      body: "Comparta carga, ruta, dimensiones y ciudad de entrega. Un asesor devolverá opciones de vehículo, caja, tren motriz y financiación.",
+      phoneLabel: "Línea de consulta",
+      phone: "400-618-7200",
+      primary: "Reservar asesor",
+      secondary: "Descargar lista",
+    },
+    footer: {
+      line: "Plataforma de venta y entrega de camiones comerciales",
+      rights: "© 2026 showroom YaoHeng Heavy",
+    },
+  },
 } as const;
 
 const sectionVariants = {
@@ -399,7 +852,7 @@ function App() {
   const activeTruckCopy = t.carousel.models[activeTruck.id as keyof typeof t.carousel.models];
 
   useEffect(() => {
-    document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
+    document.documentElement.lang = localeLang[locale];
   }, [locale]);
 
   const nextTruck = () => setActive((current) => (current + 1) % truckModels.length);
@@ -419,7 +872,7 @@ function App() {
                 {t.meta.brand}
               </span>
               <span className="text-[11px] uppercase tracking-[0.26em] text-muted-foreground">
-                Heavy showroom
+                {t.meta.showroom}
               </span>
             </span>
           </a>
@@ -439,8 +892,11 @@ function App() {
           <div className="hidden items-center gap-3 lg:flex">
             <Tabs value={locale} onValueChange={(value) => setLocale(value as Locale)}>
               <TabsList aria-label={t.meta.language}>
-                <TabsTrigger value="zh">中文</TabsTrigger>
-                <TabsTrigger value="en">EN</TabsTrigger>
+                {languageOptions.map((option) => (
+                  <TabsTrigger className="px-2.5" key={option.value} value={option.value}>
+                    {option.label}
+                  </TabsTrigger>
+                ))}
               </TabsList>
             </Tabs>
             <Button size="sm" asChild>
@@ -476,12 +932,11 @@ function App() {
               ))}
               <Tabs value={locale} onValueChange={(value) => setLocale(value as Locale)}>
                 <TabsList className="w-full justify-center" aria-label={t.meta.language}>
-                  <TabsTrigger className="flex-1" value="zh">
-                    中文
-                  </TabsTrigger>
-                  <TabsTrigger className="flex-1" value="en">
-                    EN
-                  </TabsTrigger>
+                  {languageOptions.map((option) => (
+                    <TabsTrigger className="flex-1" key={option.value} value={option.value}>
+                      {option.label}
+                    </TabsTrigger>
+                  ))}
                 </TabsList>
               </Tabs>
             </div>
@@ -506,7 +961,7 @@ function App() {
               <h1
                 className={cn(
                   "text-balance font-display text-[3.35rem] font-black uppercase leading-[0.94] text-slate-950 sm:text-6xl",
-                  locale === "en" ? "lg:text-[4.7rem]" : "lg:text-7xl",
+                  locale === "zh" ? "lg:text-7xl" : "lg:text-[4.15rem]",
                 )}
               >
                 <motion.span
