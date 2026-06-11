@@ -2133,138 +2133,163 @@ function App() {
       </header>
 
       <main>
-        <section className="hero-sector relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
-          <div className="pointer-events-none absolute left-0 top-28 h-px w-1/2 bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-44 h-px w-1/3 bg-gradient-to-r from-transparent via-orange-industrial/35 to-transparent" />
-          <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.82fr_1.5fr]">
-            <div className="relative z-10">
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55 }}
-              >
-                <Badge className="mb-6">{t.hero.eyebrow}</Badge>
-              </motion.div>
-
-              <h1
-                className={cn(
-                  "text-balance font-display text-[3.35rem] font-black uppercase leading-[0.94] text-slate-950 sm:text-6xl",
-                  locale === "zh" ? "lg:text-7xl" : "lg:text-[4.15rem]",
-                )}
-              >
-                <motion.span
-                  className="block"
-                  initial={{ opacity: 0, y: 34 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.08 }}
-                >
-                  {t.hero.titleTop}
-                </motion.span>
-                <motion.span
-                  className="mt-2 block text-slate-500"
-                  initial={{ opacity: 0, y: 34 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.2 }}
-                >
-                  {t.hero.titleBottom}
-                </motion.span>
-              </h1>
-
-              <motion.p
-                className="mt-6 max-w-xl text-base leading-8 text-muted-foreground sm:mt-7 sm:text-lg"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.34 }}
-              >
-                {t.hero.subtitle}
-              </motion.p>
-
-              <motion.div
-                className="mt-8 hidden flex-col gap-3 sm:flex-row lg:flex"
-                initial={{ opacity: 0, y: 22 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.46 }}
-              >
-                <HeroActions primary={t.hero.primaryCta} secondary={t.hero.secondaryCta} />
-              </motion.div>
-
-              <motion.div
-                className="mt-10 hidden max-w-lg grid-cols-3 border-y border-slate-200 lg:grid"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.58 }}
-              >
-                <StatsGrid stats={t.stats} />
-              </motion.div>
-            </div>
-
+        <section className="hero-sector hero-showroom relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-20">
+          <div className="pointer-events-none absolute left-0 top-24 h-px w-full bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[48rem] w-[48rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-300/35" />
+          <div className="mx-auto max-w-[90rem]">
             <motion.div
-              className="product-stage relative min-h-[760px] sm:min-h-[720px] lg:min-h-[640px]"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.85, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="hero-command-strip"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
             >
-              <div className="product-stage-plate absolute inset-x-3 bottom-16 top-8 rounded-lg border border-slate-300/80 bg-gradient-to-br from-white via-[#eef1f2] to-[#dce3e7] lg:bottom-9" />
-              <div className="product-stage-glow absolute inset-x-8 bottom-7 h-32 rounded-[50%] bg-gradient-to-r from-transparent via-slate-500/24 to-orange-industrial/16" />
-              <div className="product-stage-rim absolute left-6 top-5 h-24 w-px bg-orange-industrial/70" />
-              <div className="product-stage-rim absolute right-10 top-12 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                <span className="h-px w-16 bg-orange-industrial" />
-                {t.carousel.label}
-              </div>
+              <Badge>{t.hero.eyebrow}</Badge>
+              <span className="hidden h-px flex-1 bg-slate-300/80 lg:block" />
+              <span className="font-display text-xs font-black uppercase tracking-[0.18em] text-slate-700">
+                {t.hero.availability}
+              </span>
+            </motion.div>
 
-              <div className="product-stage-image absolute inset-x-0 top-2 z-10 flex h-[45%] items-center justify-center overflow-hidden rounded-lg sm:h-[50%] lg:h-[73%]">
-                <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.img
-                    key={activeTruck.id}
-                    src={activeTruck.image}
-                    alt={activeTruckCopy.name}
-                    className="w-[136%] max-w-none object-contain drop-shadow-[0_42px_42px_rgba(71,85,95,0.28)] sm:w-[126%] lg:w-[120%]"
-                    initial={{ opacity: 0, x: 92, y: -18, scale: 0.94, rotate: -3.2, rotateY: -8 }}
-                    animate={{ opacity: 1, x: 0, y: 0, scale: 1.025, rotate: -1.2, rotateY: 0 }}
-                    exit={{ opacity: 0, x: -82, y: 12, scale: 1.08, rotate: 2.2, rotateY: 7 }}
-                    transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </AnimatePresence>
-              </div>
+            <div className="hero-theater">
+              <motion.div
+                className="hero-title-console"
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.72, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h1
+                  className={cn(
+                    "text-balance font-display font-black uppercase leading-[0.9] text-slate-950",
+                    locale === "zh"
+                      ? "text-[3.65rem] lg:text-[5.45rem]"
+                      : "text-[3.15rem] lg:text-[4.7rem]",
+                  )}
+                >
+                  <motion.span
+                    className="block"
+                    initial={{ opacity: 0, y: 34 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.16 }}
+                  >
+                    {t.hero.titleTop}
+                  </motion.span>
+                  <motion.span
+                    className="block text-slate-500"
+                    initial={{ opacity: 0, y: 34 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.26 }}
+                  >
+                    {t.hero.titleBottom}
+                  </motion.span>
+                </h1>
+                <motion.p
+                  className="mx-auto mt-6 max-w-4xl text-balance text-base leading-8 text-slate-600 sm:text-lg"
+                  initial={{ opacity: 0, y: 22 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.38 }}
+                >
+                  {t.hero.subtitle}
+                </motion.p>
+                <motion.div
+                  className="mt-7 flex justify-center"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.5 }}
+                >
+                  <HeroActions primary={t.hero.primaryCta} secondary={t.hero.secondaryCta} />
+                </motion.div>
+              </motion.div>
 
-              <div className="product-stage-card absolute bottom-0 left-0 right-0 z-20 mx-auto max-w-[92%] rounded-lg border border-slate-300/90 bg-white p-4 shadow-[0_26px_70px_rgba(71,85,95,0.16)] sm:bg-white/94 sm:p-6 lg:bottom-0 lg:max-w-[86%]">
-                <div className="flex flex-col gap-3 sm:gap-5 md:flex-row md:items-end md:justify-between">
+              <motion.div
+                className="product-stage product-stage-pro"
+                initial={{ opacity: 0, scale: 0.96, y: 24 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="product-stage-axis" />
+                <div className="product-stage-plate absolute inset-x-4 bottom-16 top-12 rounded-lg border border-slate-300/80 bg-gradient-to-br from-white via-[#eef1f2] to-[#dce3e7]" />
+                <div className="product-stage-glow absolute inset-x-16 bottom-7 h-36 rounded-[50%] bg-gradient-to-r from-transparent via-slate-500/24 to-orange-industrial/16" />
+                <div className="product-stage-rim absolute left-[7%] top-24 h-28 w-px bg-orange-industrial/70" />
+                <div className="product-stage-rim absolute right-[8%] top-28 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <span className="h-px w-16 bg-orange-industrial" />
+                  {t.carousel.label}
+                </div>
+
+                <div className="hero-metrics-dock" aria-label="Fleet capability indicators">
+                  <StatsGrid stats={t.stats} />
+                </div>
+
+                <div className="product-stage-image absolute inset-x-0 top-[4.25rem] z-10 flex h-[31rem] items-center justify-center overflow-visible rounded-lg">
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.img
+                      key={`${activeTruck.id}-reflection`}
+                      src={activeTruck.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="product-stage-reflection"
+                      initial={{ opacity: 0, x: 86, scale: 0.94, rotate: -7 }}
+                      animate={{ opacity: 0.16, x: 0, y: -28, scale: 1.02, rotate: -6 }}
+                      exit={{ opacity: 0, x: -70, scale: 1.14, rotate: 4 }}
+                      transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </AnimatePresence>
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.img
+                      key={activeTruck.id}
+                      src={activeTruck.image}
+                      alt={activeTruckCopy.name}
+                      className="product-stage-truck"
+                      initial={{ opacity: 0, x: 116, y: -96, scale: 0.88, rotateZ: -10, rotateY: -20 }}
+                      animate={{ opacity: 1, x: 0, y: -112, scale: 0.94, rotateZ: -6.5, rotateY: -12 }}
+                      exit={{ opacity: 0, x: -110, y: -72, scale: 1.02, rotateZ: 5, rotateY: 16 }}
+                      transition={{ duration: 0.78, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </AnimatePresence>
+                </div>
+
+                <div className="hero-model-dock">
                   <div>
                     <Badge variant="steel" className="mb-3">
                       {activeTruckCopy.type}
                     </Badge>
-                    <h2 className="font-display text-[1.55rem] font-black uppercase leading-tight text-slate-950 sm:text-3xl lg:text-[1.65rem]">
+                    <h2 className="font-display text-2xl font-black uppercase leading-tight text-slate-950 lg:text-[1.85rem]">
                       {activeTruckCopy.name}
                     </h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+                    <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
                       {activeTruckCopy.summary}
                     </p>
                   </div>
-                  <div className="shrink-0 text-left md:text-right">
-                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                      {t.hero.availability}
-                    </p>
-                    <p className="mt-1 font-display text-2xl font-black text-orange-industrial">
-                      {activeTruckCopy.price}
-                    </p>
+                  <div className="hero-price-plate">
+                    <span>{t.hero.availability}</span>
+                    <strong>{activeTruckCopy.price}</strong>
                   </div>
                 </div>
 
-                <div className="mt-4 grid gap-2 sm:mt-5 sm:grid-cols-3 sm:gap-3">
+                <div className="hero-spec-dock">
                   {activeTruckCopy.specs.map(([label, value]) => (
-                    <div className="rounded-md border border-slate-200 bg-slate-50 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]" key={label}>
-                      <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                        {label}
-                      </p>
-                      <p className="mt-1 font-display text-lg font-bold text-slate-950">{value}</p>
+                    <div className="hero-spec-cell" key={label}>
+                      <p>{label}</p>
+                      <strong>{value}</strong>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-4 flex items-center justify-between gap-3 sm:mt-5">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="#contact">{t.carousel.viewDetails}</a>
-                  </Button>
+                <div className="hero-carousel-bar">
+                  <span className="hero-page-count">
+                    0{active + 1}
+                    <span>/0{truckModels.length}</span>
+                  </span>
+                  <div className="flex flex-1 gap-2">
+                    {truckModels.map((model, index) => (
+                      <button
+                        aria-label={`${t.carousel.label} ${index + 1}`}
+                        className={cn("hero-progress-segment", active === index && "is-active")}
+                        key={model.id}
+                        onClick={() => setActive(index)}
+                        type="button"
+                      />
+                    ))}
+                  </div>
                   <div className="flex items-center gap-2">
                     <Button
                       aria-label={t.carousel.previous}
@@ -2274,20 +2299,6 @@ function App() {
                     >
                       <ChevronLeft className="h-4 w-4" />
                     </Button>
-                    <div className="flex gap-2">
-                      {truckModels.map((model, index) => (
-                        <button
-                          aria-label={`${t.carousel.label} ${index + 1}`}
-                          className={cn(
-                            "h-2.5 w-8 rounded-sm bg-slate-300 transition-all",
-                            active === index && "bg-orange-industrial",
-                          )}
-                          key={model.id}
-                          onClick={() => setActive(index)}
-                          type="button"
-                        />
-                      ))}
-                    </div>
                     <Button
                       aria-label={t.carousel.next}
                       size="icon"
@@ -2296,25 +2307,21 @@ function App() {
                     >
                       <ChevronRight className="h-4 w-4" />
                     </Button>
+                    <Button size="sm" asChild>
+                      <a href="#contact">{t.carousel.viewDetails}</a>
+                    </Button>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="mx-auto mt-8 max-w-7xl lg:hidden">
-            <HeroActions primary={t.hero.primaryCta} secondary={t.hero.secondaryCta} />
-            <div className="mt-8 grid grid-cols-3 border-y border-slate-200">
-              <StatsGrid stats={t.stats} />
+              </motion.div>
             </div>
-          </div>
 
-          <div className="spec-strip mx-auto mt-12 flex max-w-7xl flex-wrap gap-3">
-            {t.paramTags.map((tag) => (
-              <Badge variant="muted" key={tag}>
-                {tag}
-              </Badge>
-            ))}
+            <div className="spec-strip hero-spec-strip mx-auto mt-10 flex max-w-7xl flex-wrap justify-center gap-3">
+              {t.paramTags.map((tag) => (
+                <Badge variant="muted" key={tag}>
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </div>
         </section>
 

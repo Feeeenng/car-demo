@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-11T16:25:45+08:00",
+  "title": "Design System: YaoHeng Heavy Commercial Truck Showroom",
+  "extensions": {
+    "colorMeta": {
+      "engineering-orange": {
+        "role": "primary",
+        "displayName": "Engineering Orange",
+        "canonical": "#e86f1d",
+        "tonalRamp": ["#fff2e9", "#ffd7bf", "#f17a24", "#e86f1d", "#b84f12"]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "#fbfaf7",
+        "tonalRamp": ["#ffffff", "#fbfaf7", "#f7f4ee", "#f3f5f6", "#eef2f4"]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Steel Gray",
+        "canonical": "#4a5a66",
+        "tonalRamp": ["#eef2f4", "#aeb7bd", "#83909a", "#667681", "#4a5a66", "#34424d", "#1f2933", "#111827"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Condensed Industrial Display",
+        "purpose": "Hero headlines, model names, and high-emphasis numeric values."
+      },
+      "body": {
+        "displayName": "Procurement Body Copy",
+        "purpose": "Readable commercial explanation and model summaries."
+      },
+      "label": {
+        "displayName": "Technical Label",
+        "purpose": "Badges, spec labels, navigation metadata, and compact controls."
+      }
+    },
+    "shadows": [
+      {
+        "name": "button-action",
+        "value": "0 16px 32px rgba(232,111,29,0.24)",
+        "purpose": "Lift for orange primary CTAs."
+      },
+      {
+        "name": "card-rest",
+        "value": "0 18px 45px rgba(71,85,95,0.09)",
+        "purpose": "Default card elevation."
+      },
+      {
+        "name": "steel-panel",
+        "value": "0 22px 60px rgba(44,52,58,0.1)",
+        "purpose": "Operational panels and advantage rows."
+      },
+      {
+        "name": "product-stage",
+        "value": "0 38px 92px rgba(71,85,95,0.16), inset 0 1px 0 rgba(255,255,255,0.92)",
+        "purpose": "Large 3D truck stage plate."
+      },
+      {
+        "name": "truck-drop",
+        "value": "drop-shadow(0 26px 28px rgba(71,85,95,0.26))",
+        "purpose": "Grounding vehicle images in the stage."
+      }
+    ],
+    "motion": [
+      {
+        "name": "standard-reveal",
+        "value": "duration 0.55s-0.85s, ease [0.22, 1, 0.36, 1]",
+        "purpose": "Page-load and section reveal animation."
+      },
+      {
+        "name": "micro-hover",
+        "value": "translateY(-1px to -2px), 180ms-300ms ease",
+        "purpose": "Buttons, language options, cards, and model stage hover response."
+      },
+      {
+        "name": "carousel-transition",
+        "value": "duration 0.72s, x shift, scale, rotate, opacity",
+        "purpose": "Smooth truck image transition with physical layer change."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl-container",
+        "value": "1280px max content width"
+      }
+    ],
+    "rules": [
+      "Engineering orange should remain a scarce calibration mark, not a broad theme.",
+      "Truck imagery must be large, angled, local, and physically grounded.",
+      "No purple gradients, glassmorphism, neon, cyberpunk, cheap ecommerce, or sports-car drama.",
+      "Use metal-like depth through border, inset highlight, shadow, and perspective."
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main sales action for quote and advisor flows.",
+      "html": "<button class=\"ds-btn-primary\">获取车队报价</button>",
+      "css": ".ds-btn-primary { height: 44px; padding: 0 20px; border: 0; border-radius: 6px; background: #e86f1d; color: #fff; font-weight: 700; box-shadow: 0 16px 32px rgba(232,111,29,0.24); transition: transform 180ms ease, background 180ms ease; } .ds-btn-primary:hover { background: #f17a24; transform: translateY(-2px); }"
+    },
+    {
+      "name": "Industrial Badge",
+      "kind": "chip",
+      "refersTo": "badge-industrial",
+      "description": "Compact technical label for sections, truck types, and specs.",
+      "html": "<span class=\"ds-badge-industrial\">COMMERCIAL TRUCK SYSTEM</span>",
+      "css": ".ds-badge-industrial { display: inline-flex; align-items: center; border: 1px solid rgba(232,111,29,.45); border-radius: 6px; background: rgba(232,111,29,.10); color: #e86f1d; padding: 4px 12px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Model Showcase Card",
+      "kind": "card",
+      "refersTo": "card-showcase",
+      "description": "Hot-model product card with 3D truck stage and procurement specs.",
+      "html": "<article class=\"ds-model-card\"><div class=\"ds-topline\"></div><h3>IronHaul 720</h3><div class=\"ds-stage\">3D truck stage</div></article>",
+      "css": ".ds-model-card { border: 1px solid rgba(100,116,139,.24); border-radius: 8px; background: rgba(255,255,255,.95); box-shadow: 0 24px 70px rgba(71,85,95,.12), inset 0 1px 0 rgba(255,255,255,.96); overflow: hidden; } .ds-topline { height: 4px; background: linear-gradient(90deg, #e86f1d, rgba(232,111,29,.38), transparent); } .ds-stage { min-height: 244px; perspective: 900px; }"
+    },
+    {
+      "name": "Language Selector",
+      "kind": "custom",
+      "refersTo": "navigation-language",
+      "description": "Compact multilingual control for 10+ markets without consuming header space.",
+      "html": "<button class=\"ds-language-trigger\">语言 中文</button>",
+      "css": ".ds-language-trigger { min-width: 200px; height: 48px; border: 1px solid rgba(148,163,184,.72); border-radius: 8px; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(241,245,249,.94)); box-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 12px 28px rgba(71,85,95,.10); }"
+    },
+    {
+      "name": "Product Stage",
+      "kind": "custom",
+      "refersTo": "product-stage",
+      "description": "Hero carousel staging system for large angled truck imagery.",
+      "html": "<div class=\"ds-product-stage\"><img alt=\"truck\" /></div>",
+      "css": ".ds-product-stage { perspective: 1100px; transform-style: preserve-3d; } .ds-product-stage img { transform: translateZ(58px) rotateX(1deg) rotateY(-2deg); filter: drop-shadow(0 42px 42px rgba(71,85,95,.28)); }"
+    }
+  ]
+}
